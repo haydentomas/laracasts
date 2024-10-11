@@ -36,16 +36,18 @@ $books = [
 
 ];
 
-function filterByAuthor ($books, $author) {
-    $filteredBooks = [];
-    foreach ($books as $book) {
-        if ($book['author'] === $author) {
-            $filteredBooks[] = $book;
-        }
-    }
-    return $filteredBooks;
-}
-
+//function filter ($items, $fn) {
+//    $filteredItems = [];
+//    foreach ($items as $item) {
+//        if ($fn($item)) {
+//            $filteredItems[] = $item;
+//        }
+//    }
+//    return $filteredItems;
+//}
+$filteredBooks = array_filter($books, function ($book) {
+    return $book ['pubYear'] > 2017 && $book ['pubYear'] < 2019;
+})
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,7 +70,7 @@ function filterByAuthor ($books, $author) {
 <body>
 <h1>Recommended Books</h1>
 <ul>
-    <?php foreach (filterByAuthor($books, 'Philip K. Dick') as $book) : ?>
+    <?php foreach ($filteredBooks as $book) : ?>
 
         <li>
             <a target="_blank" href='<?= $book['purchaseUrl'] ?>'><?= $book['name'] ?></a> - <?= $book['author'] ?> (<?= $book['pubYear'] ?>)
