@@ -45,6 +45,8 @@ $books = [
 //    }
 //    return $filteredItems;
 //}
+
+// Teh code below works in exactly the same way as teh code above, which is commented out!
 $filteredBooks = array_filter($books, function ($book) {
     return $book ['pubYear'] > 2017 && $book ['pubYear'] < 2019;
 })
